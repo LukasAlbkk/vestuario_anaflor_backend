@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #d63384;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        button {
+            background-color: #d63384;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #bf1f6d;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Adicionar Novo Produto</h2>
+
+        <form action="/add_produto" method="POST" enctype="multipart/form-data">
+            <label for="nome">Nome do Produto:</label>
+            <input type="text" name="nome" required>
+
+            <label for="preco">Preço:</label>
+            <input type="number" name="preco" step="0.01" required>
+
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" required>
+                <option value="vestidos">Vestidos</option>
+                <option value="t_shirts">T-Shirts</option>
+                <option value="body">Body</option>
+                <option value="croped">Cropped</option>
+                <option value="manga_longa">Manga Longa</option>
+                <option value="shorts">Shorts</option>
+            </select>
+
+            <label for="imagem">Imagem do Produto:</label>
+            <input type="file" name="imagem" accept="image/*" required>
+
+            <button type="submit">Adicionar Produto</button>
+        </form>
+
+        <a href="/" class="back-link">⬅ Voltar para Home</a>
+    </div>
+
+</body>
+</html>

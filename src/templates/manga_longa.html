@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Longa - Ana Flor</title>
+    <link rel="icon" href="/static/assets/logo2.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span class="menu-icon" onclick="openNav()">&#9776;</span>
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/assets/logo.jpg" alt="Ana Flor Logo">
+                </a>
+            </div>
+            <div class="contact-info">
+                <div class="phone-info">
+                    <img src="/static/assets/telefone.png" alt="" width="20px" height="20px">
+                    <p class="phone"><strong>37 99845-7511</strong></p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.instagram.com/vestuarioanaflor/" class="instagram-link" target="_blank">
+                        <img src="/static/assets/logotipo-do-instagram.png" alt="Instagram" width="27px" height="27px">
+                    </a>
+                    <a href="https://wa.me/37998457511" class="whatsapp-link" target="_blank">
+                        <img src="/static/assets/bolha-de-bate-papo(1).png" alt="WhatsApp" width="27px" height="27px">
+                    </a>
+                </div>
+            </div>
+            <div class="search-cart">
+                <form action="/buscar" method="GET" style="display: flex; align-items: center;">
+                    <input type="text" name="q" id="search-input" placeholder="Buscar..." required style="padding-right: 30px;">
+                    <img src="/static/assets/pesquisa-de-lupa.png" class="search-icon" alt="Ícone de Busca" width="20px" height="20px" onclick="this.closest('form').submit()" style="cursor: pointer; margin-left: -30px;">
+                </form>
+                
+                
+                
+                <a href="/login">
+                    <button style="position: absolute; top: 10px; right: -55px; padding: 5px 10px; background-color: hsl(340, 82%, 52%); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Login (Admin)
+                    </button>
+                </a>
+                
+            </div>
+        </div>
+        <nav class="cabecalho">
+            <ul>
+                <li class="dropdown">
+                    <a href="#categorias" class="dropbtn">CATEGORIAS</a>
+                    <div class="dropdown-content">
+                        <a href="/vestidos">VESTIDOS</a>
+                        <a href="/t_shirts">T-SHIRTS</a>
+                        <a href="/body">BODY</a>
+                        <a href="/croped">CROPED</a>
+                        <a href="/manga_longa">MANGA-LONGA</a>
+                        <a href="/shorts">SHORTS</a>
+                    </div>
+                </li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/#best-sellers-section">MAIS ACESSADOS</a></li>
+                <li><a href="/#new-arrivals">NOVIDADES</a></li>
+                <li><a href="/#contact-section">COMPRE</a></li>
+            </ul>
+        </nav>
+        <div class="scrow">
+            <div class="scroll-content">
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+                <a>✅💸 PROMOÇÕES DIÁRIAS 💸✅</a>
+            </div>
+        </div>
+    </header>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">HOME</a>
+        <a href="#best-sellers-section">MAIS ACESSADOS</a>
+        <a href="#new-arrivals">NOVIDADES</a>
+        <a href="#contact-section">COMPRE</a>
+        <a href="#categorias">CATEGORIAS</a>
+        <a href="/vestidos">VESTIDOS</a>
+        <a href="/t_shirts">T-SHIRTS</a>
+        <a href="/body">BODY</a>
+        <a href="/croped">CROPED</a>
+        <a href="/manga_longa">MANGA-LONGA</a>
+        <a href="/shorts">SHORTS</a>
+    </div>
+    <section id="product-category">
+        <h2>Manga Longa</h2>
+        <div class="product-grid">
+            {% for produto in produtos %}
+                <div class="product">
+                    <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}">
+                    <h3>{{ produto.nome }}</h3>
+                    <p>R$ {{ produto.preco }}</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('{{ produto.nome }}')">Comprar</button>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.delay').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.href;
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+        function redirectToWhatsApp(productName) {
+        const message = `Olá, gostaria de comprar este produto: ${productName}`;
+        const whatsappUrl = `https://wa.me/37998457511?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+    function searchProducts() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toLowerCase();
+            const searchTerms = {
+                'vestido': 'vestidos.html',
+                'vestidos': 'vestidos.html',
+                'short': 'shorts.html',
+                'shorts': 'shorts.html',
+                'cropped': 'croped.html',
+                'croppeds': 'croped.html',
+                'body': 'body.html',
+                'bodies': 'body.html',
+                'manga longa': 'manga_longa.html',
+                'manga longas': 'manga_longa.html',
+                't-shirt': 't_shirts.html',
+                't-shirts': 't_shirts.html'
+            };
+            if (searchTerms[filter]) {
+            window.location.href = searchTerms[filter];
+            } else {
+                alert('Nenhum resultado encontrado. Tente novamente.');
+            }
+        }
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        document.querySelectorAll('.delay').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.href;
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Ana Flor. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
