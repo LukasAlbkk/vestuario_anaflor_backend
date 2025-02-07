@@ -28,8 +28,8 @@ Este é um projeto de loja virtual desenvolvido com Flask e MySQL, permitindo a 
 Abra o terminal no VSCode e execute:
 
 ```bash
-git clone https://github.com/seu-usuario/ana-flor.git
-cd ana-flor
+git clone https://github.com/seu-usuario/vestuario_anaflor_backend.git
+cd vesturario_anaflor_backend/src
 
 
 🔹 2️⃣ Criar e ativar um ambiente virtual (opcional, mas recomendado)
